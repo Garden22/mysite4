@@ -10,7 +10,7 @@ import com.javaex.vo.UserVo;
 public class UserService {
 
 	@Autowired
-	UserDao uDao;
+	private UserDao uDao;
 	
 	
 	public void join(UserVo user) {

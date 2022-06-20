@@ -10,7 +10,7 @@ import com.javaex.vo.UserVo;
 public class UserDao {
 	
 	@Autowired  
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	
 	// 회원가입

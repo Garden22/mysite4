@@ -19,7 +19,7 @@ import com.javaex.vo.BoardVo;
 public class BoardController {
 	
 	@Autowired
-	BoardService bService;
+	private BoardService bService;
 	
 	
 	// 목록

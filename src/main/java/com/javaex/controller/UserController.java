@@ -17,7 +17,7 @@ import com.javaex.vo.UserVo;
 public class UserController {
 	
 	@Autowired
-	UserService uService;
+	private UserService uService;
 	
 	
 	// 로그인

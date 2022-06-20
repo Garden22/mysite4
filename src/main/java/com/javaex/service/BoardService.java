@@ -12,7 +12,7 @@ import com.javaex.vo.BoardVo;
 public class BoardService {
 	
 	@Autowired
-	BoardDao bDao;
+	private BoardDao bDao;
 	
 
 	public List<BoardVo> list(String search){		
