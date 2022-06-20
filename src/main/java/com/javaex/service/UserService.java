@@ -13,7 +13,7 @@ public class UserService {
 	UserDao uDao;
 	
 	public void join(UserVo user) {
-		uDao.insert(user);
+		uDao.insertUser(user);
 	}
 	
 	public UserVo login(UserVo user) {
@@ -30,7 +30,7 @@ public class UserService {
 	}
 	
 	public UserVo modify(UserVo authUser) {
-		authUser = uDao.update(authUser);
+		authUser = uDao.userUpdate(authUser);
 		
 		return authUser;
 	}

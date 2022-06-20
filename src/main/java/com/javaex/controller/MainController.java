@@ -13,7 +13,9 @@ public class MainController {
 		
 		return "main/index";
 	}
+	
 
+	// test
 	@RequestMapping(value="/test", method={RequestMethod.GET, RequestMethod.POST})
 	public String test() {
 		System.out.println("헬루");

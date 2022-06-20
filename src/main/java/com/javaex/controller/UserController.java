@@ -19,6 +19,7 @@ public class UserController {
 	@Autowired
 	UserService uService;
 	
+	
 	// 로그인
 	@RequestMapping(value="/loginForm", method={RequestMethod.GET, RequestMethod.POST})
 	public String loginForm() {
@@ -27,12 +28,12 @@ public class UserController {
 		return "user/loginForm";
 	}
 	
-	
 	@RequestMapping(value="/login", method={RequestMethod.GET, RequestMethod.POST})
 	public String login(@ModelAttribute UserVo user, HttpSession session) {
 		System.out.println("user > login");
 		
 		UserVo authUser = uService.login(user);
+		
 		if (authUser != null) {
 			session.setAttribute("authUser", authUser);
 			
@@ -40,6 +41,7 @@ public class UserController {
 			
 		} else return "redirect:/user/loginForm?result=fail";
 	}
+	
 	
 	//로그아웃
 	@RequestMapping(value="/logout", method={RequestMethod.GET, RequestMethod.POST})
@@ -61,7 +63,6 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	
 	@RequestMapping(value="/join", method={RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVo user) {
 		System.out.println("user > join");
@@ -70,6 +71,7 @@ public class UserController {
 		
 		return "user/joinOk";
 	}
+	
 	
 	// 회원정보 수정
 	@RequestMapping(value="/modifyForm", method={RequestMethod.GET, RequestMethod.POST})
@@ -83,7 +85,6 @@ public class UserController {
 		
 		return "user/modifyForm";
 	}
-	
 	
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute UserVo authUser, HttpSession session) {

@@ -3,7 +3,7 @@
 
 <mapper namespace="user">
 
-	<insert id="join" parameterType="UserVo">
+	<insert id="insertUser" parameterType="UserVo">
 		<![CDATA[
 			INSERT INTO users
 			VALUES (seq_users_no.nextval, #{id}, #{pw}, #{name}, #{gender})

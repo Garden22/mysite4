@@ -13,15 +13,17 @@ public class UserDao {
 	SqlSession sqlSession;
 	
 	
-	public void insert(UserVo user) {
+	// 회원가입
+	public void insertUser(UserVo user) {
 		int count = -1;
-		count = sqlSession.insert("user.join", user);
+		count = sqlSession.insert("user.insertUser", user);
 		
 		if (count > 0) System.out.println("[" + count + "건 회원가입 되었습니다.]");
 		else System.out.println("[회원가입이 완료되지 않았습니다.]");
 	}
 	
 	
+	// id & pw 확인 > 세션용 authUser 불러오기
 	public UserVo getUser(UserVo user) {
 		UserVo authUser = null;
 		authUser = sqlSession.selectOne("user.getUser", user);
@@ -36,6 +38,7 @@ public class UserDao {
 	}
 	
 	
+	// 정보 다 있는 authUser 불러오기(수정용)
 	public UserVo userInfo(UserVo authUser) {
 		authUser = sqlSession.selectOne("user.userInfo", authUser);
 		
@@ -43,7 +46,8 @@ public class UserDao {
 	}
 	
 	
-	public UserVo update(UserVo authUser) {
+	// 회원 정보 업데이트
+	public UserVo userUpdate(UserVo authUser) {
 		int count = -1;
 		count = sqlSession.update("user.userUpdate", authUser);
 		

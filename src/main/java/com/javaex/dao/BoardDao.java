@@ -14,6 +14,8 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	
+	// 리스트, 검색
 	public List<BoardVo> list(String find) {
 		if (find == "") System.out.println("[글 목록을 불러옵니다.]");
 		else System.out.println("[" + find + "를 검색합니다.]");
@@ -27,6 +29,7 @@ public class BoardDao {
 	}
 	
 	
+	// 글 읽기, 수정하기 > 불러오기
 	public BoardVo selectPost(int postNo) {
 		BoardVo post = sqlSession.selectOne("board.selectPost", postNo);
 				
@@ -34,6 +37,7 @@ public class BoardDao {
 	}
 	
 	
+	// 조회수
 	public void hit(int postNo) {
 		int count = -1;
 		
@@ -43,6 +47,7 @@ public class BoardDao {
 	}
 	
 	
+	// 글 작성
 	public void insertPost(BoardVo post) {
 		int count = -1;
 		System.out.println(post.getContent());
@@ -57,6 +62,7 @@ public class BoardDao {
 	}
 	
 	
+	// 글 수정
 	public void updatePost(BoardVo post) {
 		int count = -1;
 		post.setContent(post.getContent().replace("\n", "<br>"));
@@ -67,6 +73,7 @@ public class BoardDao {
 	}
 	
 	
+	// 글 삭제
 	public void deletePost(int no) {
 		int count = -1;
 		

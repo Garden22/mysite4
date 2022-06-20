@@ -33,7 +33,6 @@ public class BoardController {
 		return "/board/list";
 	}
 	
-	
 	@RequestMapping(value="/search", method={RequestMethod.GET, RequestMethod.POST})
 	public String search(@RequestParam("search") String search, Model model) {
 		System.out.println("board > search");
@@ -65,7 +64,6 @@ public class BoardController {
 		return "board/writeForm";
 	}
 	
-	
 	@RequestMapping(value="/write", method={RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute("post") BoardVo post) {
 		System.out.println("board > write");
@@ -88,7 +86,6 @@ public class BoardController {
 		
 		return "board/modifyForm";
 	}
-
 	
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute("post") BoardVo post) {
@@ -109,4 +106,5 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
 }
