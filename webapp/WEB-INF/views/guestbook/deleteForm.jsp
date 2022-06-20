@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 삭제</title>
-<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -31,10 +31,13 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
-				<div id="guestbook">
-					<form action="/mysite2/guestbook" method="post">
-						<input type="hidden" name="action" value="delete">
+				
+				<c:if test="${param.result=='fail'}">
+					<p style="text-align: left">[비밀번호가 틀렸습니다.]</p><br>
+				</c:if>
+				
+				<div id="guestbook">					
+					<form action="/mysite4/guestbook/delete" method="post">
 						<input type="hidden" name="no" value="${no}">
 						<table id="guestDelete">
 							<colgroup>
@@ -46,9 +49,9 @@
 							
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pw" value=""></td>
+								<td><input type="password" name="password" value=""></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/mysite2/guestbook">[메인으로 돌아가기]</a></td>
+								<td><a href="/mysite4/guestbook/list">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
 					</form>

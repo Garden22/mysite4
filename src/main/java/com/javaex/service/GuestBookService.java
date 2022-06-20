@@ -21,4 +21,14 @@ public class GuestBookService {
 		return gbList; 
 	}
 	
+	public void addVisit(GuestBookVo visit) {
+		gbDao.insertVisit(visit);
+	}
+	
+	public String deleteVisit(GuestBookVo visit) {
+		String result = gbDao.deleteVisit(visit);
+		
+		return result;
+	}
+	
 }

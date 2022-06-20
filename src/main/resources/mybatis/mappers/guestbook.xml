@@ -8,9 +8,35 @@
 			SELECT no
 			       ,name
 			       ,content
-			       ,reg_date regDate
+			       ,TO_CHAR(reg_date, 'YYYY-MM-DD HH:MI') regDate
 			FROM   guestbook
 		]]>
 	</select>
+	
+	
+	<insert id="insertVisit" parameterType="GuestBookVo">
+		<![CDATA[
+			INSERT INTO guestbook
+			VALUES(seq_guestbook_no.nextval, #{name}, #{password}, #{content}, SYSDATE)
+		]]>
+	</insert>
+	
+	
+	<select id="findPw" parameterType="GuestBookVo" resultType="GuestBookVo">
+		<![CDATA[
+			SELECT no
+			FROM   guestbook
+			WHERE  no = #{no}
+			AND    password = #{password}
+		]]>
+	</select>
+	
+	
+	<delete id="deleteVisit" parameterType="GuestBookVo">
+		<![CDATA[
+			DELETE guestbook
+			WHERE  no = #{no}
+		]]>
+	</delete>
 	
 </mapper>
