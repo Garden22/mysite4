@@ -14,7 +14,7 @@
 	<select id="getUser" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[
 			SELECT no
-				   ,name
+			       ,name
 			FROM   users
 			WHERE  id = #{id}
 			AND    password = #{pw}
