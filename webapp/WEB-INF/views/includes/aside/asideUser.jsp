@@ -10,13 +10,13 @@
 <body>
 	<div id="aside">
 		<h2>회원</h2>
-			<c:if test="${empty user}">
+			<c:if test="${empty authUser}">
 				<ul>
 					<li><a href="/mysite4/user/loginForm">로그인</a></li>
 					<li><a href="/mysite4/user/joinForm">회원가입</a></li>
 				</ul>
 			</c:if>
-			<c:if test="${!(empty user)}">
+			<c:if test="${!(empty authUser)}">
 				<ul>
 					<li><a href="/mysite4/user/modifyForm">회원정보</a></li>
 					<li>회원탈퇴</li>
