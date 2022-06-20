@@ -79,8 +79,8 @@ public class UserController {
 		System.out.println("user > modifyForm");
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		authUser = uService.userInfo(authUser);
 		
+		authUser = uService.userInfo(authUser);
 		model.addAttribute("authUser", authUser);
 		
 		return "user/modifyForm";

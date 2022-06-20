@@ -18,8 +18,7 @@ public class UserService {
 	}
 	
 	public UserVo login(UserVo user) {
-		UserVo authUser = null;
-		authUser = uDao.getUser(user);
+		UserVo authUser = uDao.getUser(user);
 		
 		return authUser;
 	}
