@@ -55,6 +55,7 @@ public class UserDao {
 			System.out.println("[업데이트 실패]");
 		} else {
 			System.out.println("[" + count + "건 업데이트 되었습니다.]");
+			
 			authUser = sqlSession.selectOne("user.getUser", authUser);
 		}
 	

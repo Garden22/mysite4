@@ -85,4 +85,5 @@ public class BoardVo {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
 				+ regDate + ", userNo=" + userNo + ", name=" + name + "]";
 	}
+	
 }

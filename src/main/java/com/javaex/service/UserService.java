@@ -12,6 +12,7 @@ public class UserService {
 	@Autowired
 	UserDao uDao;
 	
+	
 	public void join(UserVo user) {
 		uDao.insertUser(user);
 	}
@@ -34,4 +35,5 @@ public class UserService {
 		
 		return authUser;
 	}
+	
 }
