@@ -84,7 +84,7 @@ public class UserController {
 		
 		if (authUser == null) return "user/loginForm";
 
-		authUser = uService.userInfo(authUser);
+		authUser = uService.modifyInfo(authUser);
 		model.addAttribute("authUser", authUser);
 		
 		return "user/modifyForm";

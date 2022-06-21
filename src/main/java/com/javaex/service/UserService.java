@@ -33,7 +33,7 @@ public class UserService {
 	}
 	
 	
-	public UserVo userInfo(UserVo authUser) {
+	public UserVo modifyInfo(UserVo authUser) {
 		authUser = uDao.userInfo(authUser);
 		
 		return authUser;

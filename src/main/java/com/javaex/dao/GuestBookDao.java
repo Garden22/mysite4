@@ -36,7 +36,7 @@ public class GuestBookDao {
 	public String checkPw(GuestBookVo visit) {
 		String result = "fail";
 		
-		if (sqlSession.selectOne("guestbook.findPw", visit) != null) result = "success";
+		if (sqlSession.selectOne("guestbook.checkPw", visit) != null) result = "success";
 		
 		return result;
 	}

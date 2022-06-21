@@ -23,7 +23,7 @@
 	</insert>
 	
 	
-	<select id="findPw" parameterType="GuestBookVo" resultType="GuestBookVo">
+	<select id="checkPw" parameterType="GuestBookVo" resultType="GuestBookVo">
 		<![CDATA[
 			SELECT no
 			FROM   guestbook

@@ -84,12 +84,12 @@ public class BoardController {
 	
 	// 게시글 수정
 	@RequestMapping(value="/modifyForm", method={RequestMethod.GET, RequestMethod.POST})
-	public String modifyForm(@RequestParam("no") int no, Model model, HttpSession session) {
+	public String modifyForm(@RequestParam("no") int postNo, Model model, HttpSession session) {
 		System.out.println("board > modifyForm");
 		
 		if (session.getAttribute("authUser") == null) return "board/list";
 		
-		BoardVo post = bService.read(no);
+		BoardVo post = bService.read(postNo);
 		post.setContent(post.getContent().replace("<br>", "\n"));
 
 		model.addAttribute("post", post);
@@ -110,10 +110,10 @@ public class BoardController {
 	
 	//게시글 삭제
 	@RequestMapping(value="/delete/{no}", method={RequestMethod.GET, RequestMethod.POST})
-	public String delete(@PathVariable("no") int no) {
+	public String delete(@PathVariable("no") int postNo) {
 		System.out.println("board > delete");
 		
-		bService.delete(no);
+		bService.delete(postNo);
 		
 		return "redirect:/board/list";
 	}
