@@ -47,12 +47,9 @@ public class UserService {
 		if (count > 0) {
 			System.out.println("[" + count + "건 업데이트 되었습니다.]");
 			
-		} else {
-			System.out.println("[업데이트 실패]");
-
 			user = uDao.getUser(user);
-		}
-		
+		} else System.out.println("[업데이트 실패]");
+				
 		return user;
 	}
 	
