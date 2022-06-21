@@ -24,30 +24,29 @@ public class GuestBookDao {
 	
 	
 	// 방명록 추가
-	public void insertVisit(GuestBookVo visit) {
+	public int insertVisit(GuestBookVo visit) {
 		int count = -1;
 		count = sqlSession.insert("guestbook.insertVisit", visit);
 		
-		if (count > 0) System.out.println("[" + count + "건 등록되었습니다.]");
-		else System.out.println("[방명록이 등록되지 않았습니다.]");
+		return count;
+	}
+	
+	
+	// 비밀번호 체크
+	public String checkPw(GuestBookVo visit) {
+		String result = "fail";
+		
+		if (sqlSession.selectOne("guestbook.findPw", visit) != null) result = "success";
+		
+		return result;
 	}
 	
 	
 	// 방명록 삭제
-	public String deleteVisit(GuestBookVo visit) {
+	public int deleteVisit(GuestBookVo visit) {
 		int count = -1;
-		String result = "fail";
+		count = sqlSession.delete("guestbook.deleteVisit", visit);
 		
-		if (sqlSession.selectOne("guestbook.findPw", visit) != null) {
-			count = sqlSession.delete("guestbook.deleteVisit", visit);
-		}
-		
-		if (count > 0) {
-			System.out.println("[" + count + "건 삭제되었습니다.]");
-			
-			result = "success";
-		} else System.out.println("[비밀번호를 확인하세요.]");
-		
-		return result;
+		return count;
 	}
 }

@@ -21,12 +21,27 @@ public class GuestBookService {
 		return gbList; 
 	}
 	
+	
 	public void addVisit(GuestBookVo visit) {
-		gbDao.insertVisit(visit);
+		int count = gbDao.insertVisit(visit);
+		
+		if (count > 0) System.out.println("[" + count + "건 등록되었습니다.]");
+		else System.out.println("[방명록이 등록되지 않았습니다.]");
 	}
 	
+	
 	public String deleteVisit(GuestBookVo visit) {
-		String result = gbDao.deleteVisit(visit);
+		String result = gbDao.checkPw(visit);
+		
+		if (result.equals("fail")) System.out.println("[비밀번호를 확인하세요.]");
+		else {
+			System.out.println("[비밀번호 일치]");
+			
+			int count = gbDao.deleteVisit(visit);
+			
+			if (count > 0) System.out.println("[" + count + "건 삭제되었습니다.]");
+			else System.out.println("[삭제가 완료되지 않았습니다.]");
+		}
 		
 		return result;
 	}
