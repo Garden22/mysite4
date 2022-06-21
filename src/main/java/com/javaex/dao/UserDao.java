@@ -14,12 +14,11 @@ public class UserDao {
 	
 	
 	// 회원가입
-	public void insertUser(UserVo user) {
+	public int insertUser(UserVo user) {
 		int count = -1;
 		count = sqlSession.insert("user.insertUser", user);
 		
-		if (count > 0) System.out.println("[" + count + "건 회원가입 되었습니다.]");
-		else System.out.println("[회원가입이 완료되지 않았습니다.]");
+		return count;
 	}
 	
 	
@@ -27,12 +26,6 @@ public class UserDao {
 	public UserVo getUser(UserVo user) {
 		UserVo authUser = null;
 		authUser = sqlSession.selectOne("user.getUser", user);
-		
-		if (authUser != null) {
-			System.out.println("[로그인 성공]");
-		} else {
-			System.out.println("[로그인 실패]");
-		}
 		
 		return authUser;
 	}
@@ -47,19 +40,11 @@ public class UserDao {
 	
 	
 	// 회원 정보 업데이트
-	public UserVo userUpdate(UserVo authUser) {
+	public int userUpdate(UserVo authUser) {
 		int count = -1;
 		count = sqlSession.update("user.userUpdate", authUser);
-		
-		if (count < 1) {
-			System.out.println("[업데이트 실패]");
-		} else {
-			System.out.println("[" + count + "건 업데이트 되었습니다.]");
 			
-			authUser = sqlSession.selectOne("user.getUser", authUser);
-		}
-	
-		return authUser;
+		return count;
 	}
 
 }
