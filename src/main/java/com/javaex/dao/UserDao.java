@@ -40,9 +40,9 @@ public class UserDao {
 	
 	
 	// 회원 정보 업데이트
-	public int userUpdate(UserVo authUser) {
+	public int userUpdate(UserVo user) {
 		int count = -1;
-		count = sqlSession.update("user.userUpdate", authUser);
+		count = sqlSession.update("user.userUpdate", user);
 			
 		return count;
 	}

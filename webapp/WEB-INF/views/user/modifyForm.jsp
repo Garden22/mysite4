@@ -35,6 +35,7 @@
 				<div id="user">
 					<div id="modifyForm">
 						<form action="${pageContext.request.contextPath}/user/modify" method="post">
+							<input type="hidden" name="no" value="${authUser.no}">
 							
 							<!-- 아이디 -->
 							<div class="form-group">

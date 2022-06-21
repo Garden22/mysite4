@@ -20,6 +20,7 @@ public class UserService {
 		else System.out.println("[회원가입이 완료되지 않았습니다.]");
 	}
 	
+	
 	public UserVo login(UserVo user) {
 		UserVo authUser = uDao.getUser(user);
 		
@@ -32,24 +33,27 @@ public class UserService {
 		return authUser;
 	}
 	
+	
 	public UserVo userInfo(UserVo authUser) {
 		authUser = uDao.userInfo(authUser);
 		
 		return authUser;
 	}
 	
-	public UserVo modify(UserVo authUser) {
-		int count = uDao.userUpdate(authUser);
+	
+	public UserVo modify(UserVo user) {
+		int count = uDao.userUpdate(user);
 		
-		if (count < 1) {
-			System.out.println("[업데이트 실패]");
-		} else {
+		if (count > 0) {
 			System.out.println("[" + count + "건 업데이트 되었습니다.]");
 			
-			authUser = uDao.getUser(authUser);
+		} else {
+			System.out.println("[업데이트 실패]");
+
+			user = uDao.getUser(user);
 		}
 		
-		return authUser;
+		return user;
 	}
 	
 }
