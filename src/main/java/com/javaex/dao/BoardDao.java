@@ -16,15 +16,9 @@ public class BoardDao {
 	
 	
 	// 리스트, 검색
-	public List<BoardVo> list(String find) {
-		if (find == "") System.out.println("[글 목록을 불러옵니다.]");
-		else System.out.println("[" + find + "를 검색합니다.]");
-		
-		find = '%' + find + '%';
-		List<BoardVo> bList = sqlSession.selectList("board.list", find);
-		
-		System.out.println("[" + bList.size() + "건 검색되었습니다.]");
-		
+	public List<BoardVo> list(String search) {
+		List<BoardVo> bList = sqlSession.selectList("board.list", search);
+			
 		return bList;
 	}
 	
@@ -38,49 +32,38 @@ public class BoardDao {
 	
 	
 	// 조회수
-	public void hit(int postNo) {
+	public int hit(int postNo) {
 		int count = -1;
-		
 		count = sqlSession.update("board.hit", postNo);
 		
-		if (count > 0) System.out.println("[" + postNo + "번 글 조회수++]");
+		return count;
 	}
 	
 	
 	// 글 작성
-	public void insertPost(BoardVo post) {
+	public int insertPost(BoardVo post) {
 		int count = -1;
-		System.out.println(post.getContent());
-
-		post.setContent(post.getContent().replace("\n", "<br>"));
-		System.out.println(post.getContent());
-
 		count = sqlSession.insert("board.insertPost", post);
 		
-		if (count > 0) System.out.println("[" + count + "건 등록되었습니다.]");
-		else System.out.println("[게시글이 등록되지 않았습니다.]");
+		return count;
 	}
 	
 	
 	// 글 수정
-	public void updatePost(BoardVo post) {
+	public int updatePost(BoardVo post) {
 		int count = -1;
-		post.setContent(post.getContent().replace("\n", "<br>"));
 		count = sqlSession.update("board.updatePost", post);
 		
-		if (count > 0) System.out.println("[" + count + "건 수정되었습니다.]");
-		else System.out.println("[게시글이 수정되지 않았습니다.]");
+		return count;
 	}
 	
 	
 	// 글 삭제
-	public void deletePost(int no) {
+	public int deletePost(int no) {
 		int count = -1;
-		
 		count = sqlSession.delete("board.deletePost", no);
 		
-		if (count > 0) System.out.println("[" + count + "건 삭제되었습니다.]");
-		else System.out.println("[게시글이 삭제되지 않았습니다.]");
+		return count;
 	}
 
 }
