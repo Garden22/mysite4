@@ -28,6 +28,7 @@ public class UserController {
 		return "user/loginForm";
 	}
 	
+	
 	@RequestMapping(value="/login", method={RequestMethod.GET, RequestMethod.POST})
 	public String login(@ModelAttribute UserVo user, HttpSession session) {
 		System.out.println("user > login");
@@ -63,6 +64,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
+	
 	@RequestMapping(value="/join", method={RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVo user) {
 		System.out.println("user > join");
@@ -89,6 +91,7 @@ public class UserController {
 		
 		return "user/modifyForm";
 	}
+	
 	
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute UserVo modifiedUser, HttpSession session) {

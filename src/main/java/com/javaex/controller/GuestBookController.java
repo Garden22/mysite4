@@ -54,6 +54,7 @@ public class GuestBookController {
 		return "/guestbook/deleteForm";
 	}
 	
+	
 	@RequestMapping(value="/delete", method={RequestMethod.GET, RequestMethod.POST})
 	public String delete(@ModelAttribute GuestBookVo visit, Model model) {
 		System.out.println("guestbook > delete");
@@ -68,4 +69,5 @@ public class GuestBookController {
 			return "redirect:/guestbook/deleteForm/{no}?result=fail";
 		}
 	}
+	
 }
