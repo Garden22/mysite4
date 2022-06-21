@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>방명록</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="/mysite4/guestbook/add" method="post">
+					<form action="${pageContext.request.contextPath}/guestbook/add" method="post">
 					
 						<table id="guestAdd">
 							<colgroup>
@@ -71,7 +71,7 @@
 								<td>${visit.no}</td>
 								<td>${visit.name}</td>
 								<td>${visit.regDate}</td>
-								<td><a href="/mysite4/guestbook/deleteForm/${visit.no}">[삭제]</a></td>
+								<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm/${visit.no}">[삭제]</a></td>
 							</tr>
 							<tr>
 								<td colspan=4 class="text-left">${visit.content}</td>

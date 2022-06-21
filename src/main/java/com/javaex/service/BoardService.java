@@ -22,10 +22,13 @@ public class BoardService {
 	}
 		
 	public BoardVo read(int postNo) {
-		bDao.hit(postNo);
 		BoardVo post = bDao.selectPost(postNo);
 		
 		return post;
+	}
+	
+	public void hit(int postNo) {
+		bDao.hit(postNo);
 	}
 		
 	public void write(BoardVo post) {

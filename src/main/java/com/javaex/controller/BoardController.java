@@ -49,6 +49,8 @@ public class BoardController {
 	public String read(@PathVariable("postNo") int postNo, Model model) {
 		System.out.println("board > read");
 		
+		bService.hit(postNo);
+		
 		BoardVo post = bService.read(postNo);
 		model.addAttribute("post", post);
 	

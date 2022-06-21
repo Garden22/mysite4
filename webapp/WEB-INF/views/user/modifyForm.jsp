@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 	
 				<div id="user">
 					<div id="modifyForm">
-						<form action="/mysite4/user/modify" method="post">
+						<form action="${pageContext.request.contextPath}/user/modify" method="post">
 							
 							<!-- 아이디 -->
 							<div class="form-group">

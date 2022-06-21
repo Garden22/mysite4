@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 삭제</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 				</c:if>
 				
 				<div id="guestbook">					
-					<form action="/mysite4/guestbook/delete" method="post">
+					<form action="${pageContext.request.contextPath}/guestbook/delete" method="post">
 						<input type="hidden" name="no" value="${no}">
 						<table id="guestDelete">
 							<colgroup>
@@ -50,7 +50,7 @@
 								<td>비밀번호</td>
 								<td><input type="password" name="password" value=""></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/mysite4/guestbook/list">[메인으로 돌아가기]</a></td>
+								<td><a href="${pageContext.request.contextPath}/guestbook/list">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
 					</form>

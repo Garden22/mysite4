@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>일반게시판</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="/mysite4/board/search" method="get">
+						<form action="${pageContext.request.contextPath}/board/search" method="get">
 							<div class="form-group text-right">
 								<input type="text" name="search" value="">
 								<button type="submit" id="btn_search">검색</button>
@@ -56,12 +56,12 @@
 								<c:forEach items="${bList}" var="post">
 									<tr>
 										<td>${post.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read/${post.no}">${post.title}</a></td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read/${post.no}">${post.title}</a></td>
 										<td>${post.name}</td>
 										<td>${post.hit}</td>
 										<td>${post.regDate}</td>
 										<c:if test="${authUser.no == post.userNo}">
-											<td><a href="/mysite4/board/delete/${post.no}">[삭제]</a></td>
+											<td><a href="${pageContext.request.contextPath}/board/delete/${post.no}">[삭제]</a></td>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -88,7 +88,7 @@
 						</div>
 						
 						<c:if test="${!(empty authUser)}">
-							<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 						</c:if>
 						
 					</div>

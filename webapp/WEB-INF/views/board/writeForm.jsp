@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 작성</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 	
 				<div id="board">
 					<div id="writeForm">
-						<form action="/mysite4/board/write" method="post">
+						<form action="${pageContext.request.contextPath}/board/write" method="post">
 							<input type="hidden" name="userNo" value="${authUser.no}">
 							<!-- 제목 -->
 							<div class="form-group">
@@ -46,7 +46,7 @@
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
 							
-							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_add" type="submit">등록</button>
 							
 						</form>

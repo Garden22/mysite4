@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 				<!-- //content-head -->
 	
 				<div id="board">
-					<form action="/mysite4/board/modifyForm" method="post">
+					<form action="${pageContext.request.contextPath}/board/modifyForm" method="post">
 						<input type="hidden" name="no" value="${post.no}">
 						<div id="read">
 							<!-- 작성자 -->
@@ -69,7 +69,7 @@
 							<c:if test="${post.userNo == authUser.no}">
 								<button id="btn_modify" type="submit">수정</button>
 							</c:if>
-							<a id="btn_list" href="/mysite4/board/list">목록</a>
+							<a id="btn_list" href="${pageContext.request.contextPath}/board/list">목록</a>
 						</div>
 					<!-- //read -->
 					</form>		

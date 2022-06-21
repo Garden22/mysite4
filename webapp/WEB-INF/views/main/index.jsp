@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>MySite</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 			
 				<!-- content-head 없음 -->
 				<div id="index"> 
-					<img id="profile-img" src="/mysite4/assets/image/img.jpg">
+					<img id="profile-img" src="${pageContext.request.contextPath}/assets/image/img.jpg">
 					
 					<div id="greetings">
 						<p class="text-xlarge">
@@ -33,7 +33,7 @@
 							사이트 소개, 회원가입, 방명록, 게시판으로 구성되어 있으며<br>
 							spring으로 제작되었습니다.<br>
 							<br><br><br>
-							<a class="" href="/mysite4/guestbook/addList">[방명록에 글 남기기]</a>
+							<a class="" href="${pageContext.request.contextPath}/guestbook/list">[방명록에 글 남기기]</a>
 						</p>	
 					</div>
 					<!-- //greetings -->
