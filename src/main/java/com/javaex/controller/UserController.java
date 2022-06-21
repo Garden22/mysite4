@@ -95,7 +95,7 @@ public class UserController {
 		System.out.println("user > modify");
 
 		UserVo authUser = uService.modifyUser(modifiedUser);
-		session.setAttribute("authUser", authUser);
+		if (authUser != null) session.setAttribute("authUser", authUser);
 		
 		return "redirect:/main";
 	}

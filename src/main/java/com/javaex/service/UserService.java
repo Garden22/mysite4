@@ -43,15 +43,16 @@ public class UserService {
 	
 	public UserVo modifyUser(UserVo user) {
 		int count = uDao.userUpdate(user);
+		UserVo authUser = null;
 		
 		if (count > 0) {
 			System.out.println("[" + count + "건 업데이트 되었습니다.]");
 			
-			user = uDao.getUser(user);
+			authUser = uDao.getUser(user);
 			
 		} else System.out.println("[업데이트 실패]");
 				
-		return user;
+		return authUser;
 	}
 	
 }
