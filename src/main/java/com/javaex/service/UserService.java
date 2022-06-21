@@ -13,11 +13,13 @@ public class UserService {
 	private UserDao uDao;
 	
 	
-	public void join(UserVo user) {
+	public int join(UserVo user) {
 		int count = uDao.insertUser(user);
 		
 		if (count > 0) System.out.println("[" + count + "건 회원가입 되었습니다.]");
 		else System.out.println("[회원가입이 완료되지 않았습니다.]");
+		
+		return count;
 	}
 	
 	

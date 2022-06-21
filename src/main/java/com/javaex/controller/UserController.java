@@ -68,9 +68,10 @@ public class UserController {
 	public String join(@ModelAttribute UserVo user) {
 		System.out.println("user > join");
 		
-		uService.join(user);
+		int count = uService.join(user);
 		
-		return "user/joinOk";
+		if (count > 0 ) return "user/joinOk";
+		else return "user/joinForm";
 	}
 	
 	

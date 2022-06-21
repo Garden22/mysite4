@@ -104,7 +104,7 @@ public class BoardController {
 		
 		bService.modify(post);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/read/" + post.getNo();
 	}
 	
 	
