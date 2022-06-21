@@ -82,10 +82,8 @@ public class UserController {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-		if (authUser == null) {
-			return "user/loginForm";
-		}
-		
+		if (authUser == null) return "user/loginForm";
+
 		authUser = uService.userInfo(authUser);
 		model.addAttribute("authUser", authUser);
 		
