@@ -41,7 +41,7 @@ public class UserService {
 	}
 	
 	
-	public UserVo modify(UserVo user) {
+	public UserVo modifyUser(UserVo user) {
 		int count = uDao.userUpdate(user);
 		
 		if (count > 0) {

@@ -29,7 +29,7 @@ public class UserDao {
 		
 		return authUser;
 	}
-	
+		
 	
 	// 정보 다 있는 authUser 불러오기(수정용)
 	public UserVo userInfo(UserVo authUser) {

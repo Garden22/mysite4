@@ -20,7 +20,7 @@
 			AND    password = #{pw}
 		]]>
 	</select>
-	
+
 	
 	<select id="userInfo" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[
