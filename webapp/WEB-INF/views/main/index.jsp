@@ -13,7 +13,6 @@
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		
 		<div id="container" class="clearfix">
 			<!-- aside 없음 -->
