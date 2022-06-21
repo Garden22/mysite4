@@ -37,7 +37,6 @@ public class UserController {
 		
 		if (authUser != null) {
 			session.setAttribute("authUser", authUser);
-			
 			return "redirect:/main";
 			
 		} else return "redirect:/user/loginForm?result=fail";
