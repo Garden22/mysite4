@@ -24,11 +24,8 @@ public class UserService {
 	public UserVo login(UserVo user) {
 		UserVo authUser = uDao.getUser(user);
 		
-		if (authUser != null) {
-			System.out.println("[로그인 성공]");
-		} else {
-			System.out.println("[로그인 실패]");
-		}
+		if (authUser != null) System.out.println("[로그인 성공]");
+		else System.out.println("[로그인 실패]");
 		
 		return authUser;
 	}
@@ -47,7 +44,6 @@ public class UserService {
 		
 		if (count > 0) {
 			System.out.println("[" + count + "건 업데이트 되었습니다.]");
-			
 			authUser = uDao.getUser(user);
 			
 		} else System.out.println("[업데이트 실패]");
