@@ -8,7 +8,7 @@
 			SELECT no
 			       ,name
 			       ,content
-			       ,TO_CHAR(reg_date, 'YYYY-MM-DD HH:MI') regDate
+			       ,TO_CHAR(reg_date, 'YYYY-MM-DD HH24:MI') regDate
 			FROM   guestbook
 			ORDER BY no ASC
 		]]>

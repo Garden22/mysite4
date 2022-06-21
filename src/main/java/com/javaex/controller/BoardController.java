@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,7 @@ public class BoardController {
 		return "/board/list";
 	}
 	
+	
 	@RequestMapping(value="/search", method={RequestMethod.GET, RequestMethod.POST})
 	public String search(@RequestParam("search") String search, Model model) {
 		System.out.println("board > search");
@@ -60,11 +63,14 @@ public class BoardController {
 	
 	// 게시글 작성
 	@RequestMapping(value="/writeForm", method={RequestMethod.GET, RequestMethod.POST})
-	public String writeForm() {
+	public String writeForm(HttpSession session) {
 		System.out.println("board > writeForm");
+		
+		if (session.getAttribute("authUser") == null) return "user/loginForm";
 		
 		return "board/writeForm";
 	}
+	
 	
 	@RequestMapping(value="/write", method={RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute("post") BoardVo post) {
@@ -78,8 +84,10 @@ public class BoardController {
 	
 	// 게시글 수정
 	@RequestMapping(value="/modifyForm", method={RequestMethod.GET, RequestMethod.POST})
-	public String modifyForm(@RequestParam("no") int no, Model model) {
+	public String modifyForm(@RequestParam("no") int no, Model model, HttpSession session) {
 		System.out.println("board > modifyForm");
+		
+		if (session.getAttribute("authUser") == null) return "board/list";
 		
 		BoardVo post = bService.read(no);
 		post.setContent(post.getContent().replace("<br>", "\n"));
@@ -88,6 +96,7 @@ public class BoardController {
 		
 		return "board/modifyForm";
 	}
+	
 	
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute("post") BoardVo post) {

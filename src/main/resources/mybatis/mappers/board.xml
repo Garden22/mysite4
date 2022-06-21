@@ -9,7 +9,7 @@
 			       ,board.title title
 			       ,board.content content
 			       ,board.hit hit
-			       ,TO_CHAR(board.reg_date, 'YY-MM-DD HH:MI') regDate
+			       ,TO_CHAR(board.reg_date, 'YY-MM-DD HH24:MI') regDate
 			       ,board.user_no userNo
 			       ,users.name name
 			FROM   users, board
@@ -26,7 +26,7 @@
 			       ,board.title title
 			       ,board.content content
 			       ,board.hit hit
-			       ,TO_CHAR(board.reg_date, 'YY-MM-DD HH:MI') regDate
+			       ,TO_CHAR(board.reg_date, 'YY-MM-DD HH24:MI') regDate
 			       ,board.user_no userNo
 			       ,users.name name
 			FROM   users, board
