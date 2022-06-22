@@ -40,10 +40,8 @@ public class BoardController {
 	@RequestMapping(value="/read/{postNo}", method={RequestMethod.GET, RequestMethod.POST})
 	public String read(@PathVariable("postNo") int postNo, Model model) {
 		System.out.println("board > read");
-		
-		bService.hit(postNo);
-		
-		BoardVo post = bService.read(postNo);
+			
+		BoardVo post = bService.readPost(postNo);
 		model.addAttribute("post", post);
 	
 		return "/board/read";
@@ -78,7 +76,7 @@ public class BoardController {
 		
 		if (session.getAttribute("authUser") == null) return "board/list";
 		
-		BoardVo post = bService.read(postNo);
+		BoardVo post = bService.prepareModify(postNo);
 		post.setContent(post.getContent().replace("<br>", "\n"));
 
 		model.addAttribute("post", post);

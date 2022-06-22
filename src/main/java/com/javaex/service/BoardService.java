@@ -27,20 +27,23 @@ public class BoardService {
 		return bList;
 	}
 	
-		
-	public BoardVo read(int postNo) {
+	
+	public BoardVo readPost(int postNo) {
+		int count = bDao.hit(postNo);
+		if (count > 0) System.out.println("[" + postNo + "번 글 조회수++]");
+
 		BoardVo post = bDao.selectPost(postNo);
 		
 		return post;
 	}
-	
-	
-	public void hit(int postNo) {
-		int count = bDao.hit(postNo);
 		
-		if (count > 0) System.out.println("[" + postNo + "번 글 조회수++]");
+	
+	public BoardVo prepareModify(int postNo) {
+		BoardVo post = bDao.selectPost(postNo);
+		
+		return post;
 	}
-		
+
 	
 	public void write(BoardVo post) {
 		post.setContent(post.getContent().replace("\n", "<br>"));
