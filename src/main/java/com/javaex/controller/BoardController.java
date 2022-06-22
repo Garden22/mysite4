@@ -26,26 +26,15 @@ public class BoardController {
 	
 	// 목록
 	@RequestMapping(value="/list", method={RequestMethod.GET, RequestMethod.POST})
-	public String list(Model model) {
+	public String list(@RequestParam(value="search", required=false, defaultValue="") String search, Model model) {
 		System.out.println("board > list");
-		
-		List<BoardVo> bList = bService.list("");
-		model.addAttribute("bList", bList);
-		
-		return "/board/list";
-	}
-	
-	
-	@RequestMapping(value="/search", method={RequestMethod.GET, RequestMethod.POST})
-	public String search(@RequestParam("search") String search, Model model) {
-		System.out.println("board > search");
-		
+
 		List<BoardVo> bList = bService.list(search);
 		model.addAttribute("bList", bList);
 		
 		return "/board/list";
 	}
-	
+
 	
 	// 게시글 읽기
 	@RequestMapping(value="/read/{postNo}", method={RequestMethod.GET, RequestMethod.POST})

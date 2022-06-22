@@ -3,8 +3,7 @@
 
 <mapper namespace="board">
 
-	<select id="list" resultType="BoardVo" parameterType="string">
-		<![CDATA[
+	<select id="list" resultType="BoardVo" parameterType="String">
 			SELECT board.no no
 			       ,board.title title
 			       ,board.content content
@@ -14,9 +13,10 @@
 			       ,users.name name
 			FROM   users, board
 			WHERE  users.no = board.user_no
-			AND    title like #{find}
+			<if test='_parameter != null or !_parameter.equals("")'>
+			       AND title LIKE #{search}
+			</if>
 			ORDER BY no DESC
-		]]>
 	</select>
 	
 	

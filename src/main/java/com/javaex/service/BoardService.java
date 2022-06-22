@@ -16,11 +16,12 @@ public class BoardService {
 	
 
 	public List<BoardVo> list(String search){
-		if (search == "") System.out.println("[글 목록을 불러옵니다.]");
+		if (search.equals("") || search == null) System.out.println("[글 목록을 불러옵니다.]");
 		else System.out.println("[" + search + "를 검색합니다.]");
-
-		List<BoardVo> bList = bDao.list('%' + search + '%');
 		
+		search = '%' + search + '%';
+		List<BoardVo> bList = bDao.list(search);
+
 		System.out.println("[" + bList.size() + "건 검색되었습니다.]");
 		
 		return bList;

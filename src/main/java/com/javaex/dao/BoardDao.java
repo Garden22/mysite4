@@ -18,7 +18,7 @@ public class BoardDao {
 	// 리스트, 검색
 	public List<BoardVo> list(String search) {
 		List<BoardVo> bList = sqlSession.selectList("board.list", search);
-			
+
 		return bList;
 	}
 	
