@@ -14,7 +14,7 @@
 			FROM   users, board
 			WHERE  users.no = board.user_no
 			<if test='_parameter != null or !_parameter.equals("")'>
-			       AND title LIKE #{search}
+			       AND title LIKE '%'||#{search}||'%'
 			</if>
 			ORDER BY no DESC
 	</select>
