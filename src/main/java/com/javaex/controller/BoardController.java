@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping("/board")
@@ -26,7 +27,7 @@ public class BoardController {
 	
 	// 목록
 	@RequestMapping(value="/list", method={RequestMethod.GET, RequestMethod.POST})
-	public String list(@RequestParam(value="search", required=false, defaultValue="") String search, Model model) {
+	public String list(@RequestParam(value="search", defaultValue="") String search, Model model) {
 		System.out.println("board > list");
 
 		List<BoardVo> bList = bService.list(search);
@@ -38,10 +39,14 @@ public class BoardController {
 	
 	// 게시글 읽기
 	@RequestMapping(value="/read/{postNo}", method={RequestMethod.GET, RequestMethod.POST})
-	public String read(@PathVariable("postNo") int postNo, Model model) {
+	public String read(@PathVariable("postNo") int postNo, HttpSession session, Model model) {
 		System.out.println("board > read");
-			
-		BoardVo post = bService.readPost(postNo);
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		Integer userNo = null;
+		if (authUser != null) userNo = authUser.getNo();
+		
+		BoardVo post = bService.readPost(postNo, userNo);
 		model.addAttribute("post", post);
 	
 		return "/board/read";

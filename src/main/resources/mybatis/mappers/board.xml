@@ -36,6 +36,15 @@
 	</select>
 	
 	
+	<select id="selectUser" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT user_no userNo
+			FROM   board
+			WHERE  no = #{postNo}
+		]]>
+	</select>
+	
+	
 	<update id="hit" parameterType="int">
 		<![CDATA[ 
 			UPDATE board
