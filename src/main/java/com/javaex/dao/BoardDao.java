@@ -33,8 +33,6 @@ public class BoardDao {
 	
 	// 글 작성자 불러오기
 	public int selectUser(int postNo) {
-		System.out.println("22");
-
 		int userNo = sqlSession.selectOne("board.selectUser", postNo);
 		
 		return userNo;
