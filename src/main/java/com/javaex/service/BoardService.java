@@ -27,14 +27,16 @@ public class BoardService {
 	}
 	
 	
-	public BoardVo readPost(int postNo, Integer userNo) {
-		int no = bDao.selectUser(postNo);
-
-		if (userNo == null || userNo != no) {
+	public BoardVo readPost(BoardVo post) {
+		Integer userNo = post.getUserNo();
+		int postNo = post.getNo();
+		int postUser = bDao.selectUser(postNo);
+		
+		if (userNo == null || userNo != postUser) {
 			int count = bDao.hit(postNo);
 			if (count > 0) System.out.println("[" + postNo + "번 글 조회수++]");
 		}
-		BoardVo post = bDao.selectPost(postNo);
+		post = bDao.selectPost(postNo);
 		
 		return post;
 	}

@@ -35,20 +35,25 @@ public class BoardController {
 		
 		return "/board/list";
 	}
-
 	
+
 	// 게시글 읽기
 	@RequestMapping(value="/read/{postNo}", method={RequestMethod.GET, RequestMethod.POST})
 	public String read(@PathVariable("postNo") int postNo, HttpSession session, Model model) {
 		System.out.println("board > read");
+		
+		BoardVo post = new BoardVo();
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-		Integer userNo = null;
-		if (authUser != null) userNo = authUser.getNo();
+		post.setNo(postNo);
+		if (authUser != null) {
+			int userNo = authUser.getNo();
+			post.setUserNo(userNo);
+		}
 		
-		BoardVo post = bService.readPost(postNo, userNo);
+		post = bService.readPost(post);
 		model.addAttribute("post", post);
-	
+		
 		return "/board/read";
 	}
 	
