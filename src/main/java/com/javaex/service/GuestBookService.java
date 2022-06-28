@@ -30,6 +30,20 @@ public class GuestBookService {
 	}
 	
 	
+	public GuestBookVo add(GuestBookVo visit) {
+		int count = -1;
+		count = gbDao.insert(visit);
+		
+		if (count > 0) System.out.println("[" + count + "건 등록되었습니다.]");
+		else System.out.println("[방명록이 등록되지 않았습니다.]");
+		
+		int no = visit.getNo();
+		visit = gbDao.getVisit(no);
+		
+		return visit;
+	}
+	
+	
 	public String deleteVisit(GuestBookVo visit) {
 		String result = gbDao.checkPw(visit);
 		

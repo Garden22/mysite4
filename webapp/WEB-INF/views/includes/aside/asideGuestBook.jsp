@@ -10,7 +10,7 @@
 		<h2>방명록</h2>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/guestbook/list">일반방명록</a></li>
-			<li><a href="">ajax방명록</a></li>
+			<li><a href="${pageContext.request.contextPath}/api/guestbook/list">ajax방명록</a></li>
 		</ul>
 	</div>
 </body>

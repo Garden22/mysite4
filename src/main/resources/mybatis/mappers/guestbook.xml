@@ -10,10 +10,9 @@
 			       ,content
 			       ,TO_CHAR(reg_date, 'YYYY-MM-DD HH24:MI') regDate
 			FROM   guestbook
-			ORDER BY no ASC
+			ORDER BY no DESC
 		]]>
-	</select>
-	
+	</select>	
 	
 	<insert id="insertVisit" parameterType="GuestBookVo">
 		<![CDATA[
@@ -21,6 +20,31 @@
 			VALUES(seq_guestbook_no.nextval, #{name}, #{password}, #{content}, SYSDATE)
 		]]>
 	</insert>
+	
+	
+	<insert id="insert" parameterType="GuestBookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT seq_guestbook_no.nextval 
+			FROM   dual
+		</selectKey>
+		
+		<![CDATA[
+			INSERT INTO guestbook
+			VALUES(#{no}, #{name}, #{password}, #{content}, SYSDATE)
+		]]>
+	</insert>
+	
+	
+	<select id="getVisit" parameterType="int" resultType="GuestBookVo">
+		<![CDATA[
+			SELECT no
+			       ,name
+			       ,content
+			       ,TO_CHAR(reg_date, 'YYYY-MM-DD HH24:MI') regDate
+			FROM   guestbook
+			WHERE  no = #{no}
+		]]>
+	</select>
 	
 	
 	<select id="checkPw" parameterType="GuestBookVo" resultType="GuestBookVo">
@@ -39,5 +63,6 @@
 			WHERE  no = #{no}
 		]]>
 	</delete>
+	
 	
 </mapper>

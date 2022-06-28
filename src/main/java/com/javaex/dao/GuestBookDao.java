@@ -23,6 +23,22 @@ public class GuestBookDao {
 	}
 	
 	
+	// 방명록 조회(ajax)
+	public int insert(GuestBookVo visit) {
+		int count = sqlSession.insert("guestbook.insert", visit);
+		
+		return count;		
+	}
+	
+	
+	// 글 한 개 가져오기
+	public GuestBookVo getVisit(int no) {
+		GuestBookVo visit = sqlSession.selectOne("guestbook.getVisit", no);
+		
+		return visit;
+	}
+	
+	
 	// 방명록 추가
 	public int insertVisit(GuestBookVo visit) {
 		int count = -1;
