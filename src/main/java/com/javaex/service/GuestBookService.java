@@ -42,7 +42,7 @@ public class GuestBookService {
 		
 		return visit;
 	}
-	
+		
 	
 	public String deleteVisit(GuestBookVo visit) {
 		String result = gbDao.checkPw(visit);

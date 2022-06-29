@@ -9,7 +9,10 @@
 <title>방명록</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 </head>
 
@@ -56,7 +59,7 @@
 						</tr>
 					</table>
 					<!-- //guestWrite -->
-					
+										
 					<div id="listarea">
 						
 					</div>
@@ -74,7 +77,34 @@
 
 	</div>
 	<!-- //wrap -->
-	
+
+
+	<!-- 삭제 모달창  -->
+	<div id="del-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">비밀번호를 입력하세요</h4>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" name="no" value="">
+					<input type="text" name="modal-pw" value="">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button id="modal-btn-del" type="button" class="btn btn-danger">삭제</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
 </body>
 
 <script type="text/javascript">
@@ -104,7 +134,7 @@ $(document).ready(function(){
 function render(gbVo) {
 	$("#listarea").append(
 			
-		"<table class='guestRead'>"+
+		"<table id='table" + gbVo.no + "'class='guestRead'>"+
      		"<colgroup>"+
 				"<col style='width: 10%;'>"+
 				"<col style='width: 40%;'>"+
@@ -116,7 +146,7 @@ function render(gbVo) {
 				"<td>" + gbVo.no + "</td>"+
 				"<td>" + gbVo.name + "</td>"+
 				"<td>" + gbVo.regDate + "</td>"+
-				"<td><a href='${pageContext.request.contextPath}/api/guestbook/deleteForm/" + gbVo.no + "'>[삭제]</a></td>"+
+				"<td><button class='btn-del' type='button' data-no='" + gbVo.no + "'>삭제</button></td>"+
 			"</tr>"+
 			"<tr>"+
 				"<td colspan=4 class='text-left'>" + gbVo.content + "</td>"+
@@ -129,7 +159,7 @@ function render(gbVo) {
 function render2(gbVo) {
 	$("#listarea").prepend(
 			
-		"<table class='guestRead'>"+
+		"<table id='table" + gbVo.no + "'class='guestRead'>"+
      		"<colgroup>"+
 				"<col style='width: 10%;'>"+
 				"<col style='width: 40%;'>"+
@@ -141,7 +171,7 @@ function render2(gbVo) {
 				"<td>" + gbVo.no + "</td>"+
 				"<td>" + gbVo.name + "</td>"+
 				"<td>" + gbVo.regDate + "</td>"+
-				"<td><a href='${pageContext.request.contextPath}/api/guestbook/deleteForm/" + gbVo.no + "'>[삭제]</a></td>"+
+				"<td><button class='btn-del' type='button' data-no=''>삭제</button></td>"+
 			"</tr>"+
 			"<tr>"+
 				"<td colspan=4 class='text-left'>" + gbVo.content + "</td>"+
@@ -156,7 +186,7 @@ $("#btn-submit").on("click", function(){
 		url: "${pageContext.request.contextPath}/api/guestbook/add",
 		type : "post",
 		//contentType = "application/json",
-		data : {name: $("[name='name']").val(), password: $("[name='password']").val(), content: $("[name='content']").val()},
+		data : {name: $("[name=name]").val(), password: $("[name=password]").val(), content: $("[name=content]").val()},
 		
 		dataType: "json",
 		success : function(visit){
@@ -164,14 +194,50 @@ $("#btn-submit").on("click", function(){
 			
 			render2(visit);
 			
-			$("[name='name']").val("");
-			$("[name='password']").val("");
-			$("[name='content']").val("");
+			$("[name=name]").val("");
+			$("[name=password]").val("");
+			$("[name=content]").val("");
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});	
+});
+
+
+$("#listarea").on("click", ".btn-del", function(){
+	var no = $(this).data("no");
+	$("[name=modal-pw]").val("");
+	$("[name=no]").val(no);
+	
+	$("#del-modal").modal("show");
+});
+
+
+$("#modal-btn-del").on("click", function(){
+	var pw = $("[name=modal-pw]").val();
+	var no = $("[name=no]").val();
+	
+	$.ajax({
+		url: "${pageContext.request.contextPath}/api/guestbook/delete",
+		type : "post",
+		//contentType = "application/json",
+		data : {password: pw, no: no},
+		
+		dataType: "json",
+		success : function(result){
+			if (result == "success") {
+				$("#table" + no).remove();
+				$("#del-modal").modal("hide");
+				
+			} else {			
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 });
 
 </script>

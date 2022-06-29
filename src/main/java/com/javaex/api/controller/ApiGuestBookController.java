@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,5 +47,14 @@ public class ApiGuestBookController {
 		GuestBookVo visit = gbService.add(gbVo);
 
 		return visit;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String delete(@ModelAttribute GuestBookVo visit) {
+		String result = gbService.deleteVisit(visit);
+		
+		return result;
 	}
 }
