@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,18 +40,27 @@ public class ApiGuestBookController {
 	}
 	
 	
+	/*
 	@ResponseBody
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
-	public GuestBookVo add(@ModelAttribute GuestBookVo gbVo) {
+	public void add(@ModelAttribute GuestBookVo gbVo) {
 		System.out.println("api.guestbook > add");
 		
-		System.out.println(gbVo.toString());
+		gbService.add(gbVo);
+	}*/
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
+	public GuestBookVo add(@RequestBody GuestBookVo gbVo) {
+		System.out.println("api.guestbook > add");
+		
 		GuestBookVo visit = gbService.add(gbVo);
 
 		return visit;
 	}
 	
-	
+		
 	@ResponseBody
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String delete(GuestBookVo visit) {
