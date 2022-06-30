@@ -25,6 +25,7 @@ public class GuestBookDao {
 	
 	// 방명록 조회(ajax)
 	public int insert(GuestBookVo visit) {
+
 		int count = sqlSession.insert("guestbook.insert", visit);
 		
 		return count;		
@@ -42,6 +43,7 @@ public class GuestBookDao {
 	// 방명록 추가
 	public int insertVisit(GuestBookVo visit) {
 		int count = -1;
+
 		count = sqlSession.insert("guestbook.insertVisit", visit);
 		
 		return count;

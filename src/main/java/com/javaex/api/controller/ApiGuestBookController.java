@@ -41,9 +41,10 @@ public class ApiGuestBookController {
 	
 	@ResponseBody
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
-	public GuestBookVo add(GuestBookVo gbVo) {
+	public GuestBookVo add(@ModelAttribute GuestBookVo gbVo) {
 		System.out.println("api.guestbook > add");
 		
+		System.out.println(gbVo.toString());
 		GuestBookVo visit = gbService.add(gbVo);
 
 		return visit;
@@ -52,7 +53,7 @@ public class ApiGuestBookController {
 	
 	@ResponseBody
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
-	public String delete(@ModelAttribute GuestBookVo visit) {
+	public String delete(GuestBookVo visit) {
 		String result = gbService.deleteVisit(visit);
 		
 		return result;

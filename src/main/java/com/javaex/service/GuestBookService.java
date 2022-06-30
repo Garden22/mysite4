@@ -33,7 +33,7 @@ public class GuestBookService {
 	public GuestBookVo add(GuestBookVo visit) {
 		int count = -1;
 		count = gbDao.insert(visit);
-		
+
 		if (count > 0) System.out.println("[" + count + "건 등록되었습니다.]");
 		else System.out.println("[방명록이 등록되지 않았습니다.]");
 		

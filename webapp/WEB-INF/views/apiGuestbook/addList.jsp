@@ -113,10 +113,7 @@ $(document).ready(function(){
 	$.ajax({
 		url: "${pageContext.request.contextPath}/api/guestbook/show",
 		type : "post",
-		//contentType = "application/jason",
-		//data : {name: "gbList"},
 		
-		dataType: "json",
 		success : function(gbList){
 			console.log(gbList);
 			
@@ -182,11 +179,21 @@ function render2(gbVo) {
 
 
 $("#btn-submit").on("click", function(){
-	$.ajax({
+	var name = $("[name=name]").val();
+	var password = $("[name=password]").val();
+	var content = $("[name=content]").val();
+	
+	var gbVo = {
+		name: name,
+		password: password,
+		content: content
+	};
+			
+	$.ajax({	
 		url: "${pageContext.request.contextPath}/api/guestbook/add",
 		type : "post",
-		//contentType = "application/json",
-		data : {name: $("[name=name]").val(), password: $("[name=password]").val(), content: $("[name=content]").val()},
+		contentType : "application/json",
+		data : JSON.stringify(gbVo),
 		
 		dataType: "json",
 		success : function(visit){
@@ -202,6 +209,28 @@ $("#btn-submit").on("click", function(){
 			console.error(status + " : " + error);
 		}
 	});	
+	
+	
+	/*
+	$.ajax({
+		url: "${pageContext.request.contextPath}/api/guestbook/add",
+		type : "post",
+		data : visit
+		
+		success : function(visit){
+			console.log(visit);
+			
+			render2(visit);
+			
+			$("[name=name]").val("");
+			$("[name=password]").val("");
+			$("[name=content]").val("");
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});	
+	*/
 });
 
 
@@ -221,10 +250,8 @@ $("#modal-btn-del").on("click", function(){
 	$.ajax({
 		url: "${pageContext.request.contextPath}/api/guestbook/delete",
 		type : "post",
-		//contentType = "application/json",
 		data : {password: pw, no: no},
 		
-		dataType: "json",
 		success : function(result){
 			if (result == "success") {
 				$("#table" + no).remove();
