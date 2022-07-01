@@ -122,7 +122,7 @@ function idcheck() {
 	var test = {id: id};
 	
 	$.ajax({	
-		url: "${pageContext.request.contextPath}/api/user/idcheck",
+		url: "${pageContext.request.contextPath}/user/idcheck",
 		type : "post",
 		contentType : "application/json",
 		data : JSON.stringify(test),
