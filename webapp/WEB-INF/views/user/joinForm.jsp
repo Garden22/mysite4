@@ -38,13 +38,13 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="${pageContext.request.contextPath}/user/join" method="post">
-
+					<form id="join-form" action="${pageContext.request.contextPath}/user/join" method="post">
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
 								<button type="button" id="btn-idcheck">중복체크</button>
+								<input type="hidden" id="id-checked" value="">
 							</div>
 	
 							<!-- 비밀번호 -->
@@ -75,7 +75,7 @@
 							<div class="form-group">
 								<span class="form-text">약관동의</span> 
 								
-								<input type="checkbox" id="chk-agree" value="checked" name="">
+								<input type="checkbox" id="chk-agree" name="">
 								<label for="chk-agree">서비스 약관에 동의합니다.</label> 
 							</div>
 							
@@ -83,7 +83,7 @@
 							<div class="button-area">
 								<button type="submit" id="btn-submit">회원가입</button>
 							</div>
-						</form>
+					</form>
 					</div>
 					<!-- //joinForm -->
 					
@@ -106,8 +106,19 @@
 <script type="text/javascript">
 
 $("#btn-idcheck").on("click", function(){
+	$("#id-checked").val("")
 	var id = $("#input-uid").val();
 	
+	if (id.length <= 0) {
+		alert("아이디를 입력해주세요.")
+	} else {
+		idcheck();
+	}
+});
+
+function idcheck() {
+	var id = $("#input-uid").val();
+		
 	var test = {id: id};
 	
 	$.ajax({	
@@ -124,14 +135,38 @@ $("#btn-idcheck").on("click", function(){
 				
 			} else {
 				alert("사용 가능한 ID입니다.")
+				$("#id-checked").val("checked")
 			}			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});	
-})
+}
 
+$("#btn-submit").on("click", function(){
+	var id = $("#id-checked").val();
+	var pw = $("#input-pass").val();
+	var name = $("#input-name").val();
+
+	if (id != "checked") {
+		alert("아이디를 중복 검사를 해주세요.")
+		return false;
+		
+	} else if (pw == "" || pw == null) {
+		alert("비밀번호를 입력해주세요.")
+		return false;
+		
+	} else if (name == "" || name == null) {
+		alert("이름을 입력해주세요.")
+		return false;
+		
+	} else if (! $("#chk-agree").is(":checked")) {
+		alert("약관에 동의해주세요.")
+		return false;
+		
+	} else return true;
+});
 </script>
 
 </html>
