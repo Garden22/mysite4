@@ -46,5 +46,14 @@ public class UserDao {
 			
 		return count;
 	}
+	
+	
+	// 아이디 중복 체크
+	public int idcheck(String id) {
+		int count = 0;
+		count = Integer.parseInt(sqlSession.selectOne("user.idcheck", id));
+		
+		return count;
+	}
 
 }

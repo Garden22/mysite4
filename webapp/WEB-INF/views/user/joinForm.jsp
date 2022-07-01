@@ -6,8 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/button.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 </head>
 
 <body>
@@ -39,7 +44,7 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="btn-idcheck">중복체크</button>
 							</div>
 	
 							<!-- 비밀번호 -->
@@ -97,5 +102,36 @@
 	<!-- //wrap -->
 	
 </body>
+
+<script type="text/javascript">
+
+$("#btn-idcheck").on("click", function(){
+	var id = $("#input-uid").val();
+	
+	var test = {id: id};
+	
+	$.ajax({	
+		url: "${pageContext.request.contextPath}/api/user/idcheck",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(test),
+		
+		dataType: "json",
+		success : function(result){
+			if (!result) {
+				alert("이미 사용중인 ID입니다.")
+				$("#input-uid").val("")
+				
+			} else {
+				alert("사용 가능한 ID입니다.")
+			}			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});	
+})
+
+</script>
 
 </html>

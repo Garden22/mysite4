@@ -53,4 +53,18 @@ public class UserService {
 		return authUser;
 	}
 	
+	
+	public boolean idcheck(String id) {
+		boolean result = true;
+		
+		int count = uDao.idcheck(id);
+		
+		if (count != 0) {
+			System.out.println("[중복된 아이디입니다.]");
+			result = false;
+		} else System.out.println("[사용 가능한 아이디입니다.]");
+		
+		return result;
+	}
+	
 }

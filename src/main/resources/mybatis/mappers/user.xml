@@ -45,4 +45,13 @@
 		]]>
 	</update>
 	
+	
+	<select id="idcheck" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM   users
+			WHERE  id = #{id}
+		]]>
+	</select>
+	
 </mapper>
