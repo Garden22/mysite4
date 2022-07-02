@@ -170,7 +170,7 @@ $("#show-modal-footer").on("click", "#btn-del", function(){
 		dataType: "json",
 		success : function(){
 			$("#viewModal").modal("hide");
-			
+			// 어떻게 없애냐...
 			
 			alert("성공적으로 삭제되었습니다.")
 						
