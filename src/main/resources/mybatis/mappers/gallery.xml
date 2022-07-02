@@ -24,4 +24,12 @@
 			VALUES(seq_gallery_no.nextval, #{userNo}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
 		]]>
 	</insert>
+	
+	
+	<delete id="delete" parameterType="int">	
+		<![CDATA[
+			DELETE gallery
+			WHERE  no = #{no}
+		]]>
+	</delete>
 </mapper>

@@ -56,4 +56,18 @@ public class GalleryService {
 		}
 		else System.out.println("[등록되지 않았습니다.]");
 	}
+	
+	
+	public String delete(int no) {
+		String result = "fail";
+		
+		int count = gDao.delete(no);
+		if (count > 0) {
+			System.out.println("[성공적으로 삭제되었습니다.]");
+			result = "success";
+		}
+		else System.out.println("[삭제되지 않았습니다.]");
+		
+		return result;
+	}
 }

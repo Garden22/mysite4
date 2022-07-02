@@ -47,8 +47,8 @@
 					<ul id="viewArea">
 					<!-- 이미지반복영역 -->
 					<c:forEach items="#{gList}" var="photo">
-						<li>
-							<div class="view" >
+						<li class="img-li" data-no="${photo.no}" data-name="${photo.saveName}" data-user="${photo.userNo}" data-content="${photo.content}">
+							<div class="view">
 								<img class="imgItem" src="${pageContext.request.contextPath}/upload/${photo.saveName}">
 								<div class="imgWriter">작성자: <strong>${photo.name}</strong></div>
 							</div>
@@ -110,22 +110,17 @@
 				</div>
 				<div class="modal-body">
 					
-					<div class="formgroup" >
-						<img id="viewModelImg" src =""> <!-- ajax로 처리 : 이미지출력 위치-->
+					<div id="imgHere" class="formgroup" >
 					</div>
 					
 					<div class="formgroup">
 						<p id="viewModelContent"></p>
 					</div>
-					
 				</div>
-				<form method="post" action="">
-					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
-				</div>
-								
-				</form>
+				
+				<div id="show-modal-footer" class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>			
 				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -135,9 +130,64 @@
 
 <script type="text/javascript">
 
+var no = 0
+
 $("#btnImgUpload").on("click", function(){
 	$("#addModal").modal("show");
 });
+
+
+$(".img-li").on("click", function(){
+	no = $(this).attr("data-no");
+	var name = $(this).attr("data-name");
+	var userNo = $(this).attr("data-user");
+	var content = $(this).attr("data-content");
+	
+	$("#imgHere").append('<img class="imgItem" src="${pageContext.request.contextPath}/upload/' + name + '">')
+	$("#imgHere").append('<p>' + content + '</p>')
+	
+	var authUserNo = "${authUser.no}"; 
+	
+	if (authUserNo != "" && userNo == authUserNo) {
+		$("#show-modal-footer").append('<button type="button" id="btn-del" class="btn btn-danger" data-no="' + no + '">삭제</button>');
+	}
+	
+	$("#viewModal").modal("show");
+	
+});
+
+
+$("#show-modal-footer").on("click", "#btn-del", function(){
+	console.log(no);
+	var info = {no: no};
+	
+	$.ajax({	
+		url: "${pageContext.request.contextPath}/gallery/delete",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(info),
+		
+		dataType: "json",
+		success : function(){
+			$("#viewModal").modal("hide");
+			
+			
+			alert("성공적으로 삭제되었습니다.")
+						
+			no = 0;
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});	
+});
+
+
+$("#viewModal").on("hidden.bs.modal", function(){
+	$("#imgHere").empty();
+	$("#show-modal-footer #btn-del").remove();
+	
+})
 
 </script>
 
