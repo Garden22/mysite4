@@ -137,6 +137,14 @@ $("#btnImgUpload").on("click", function(){
 });
 
 
+$("#btnUpload").on("click", function(){ ///흠
+	if (!$("#file").val()) {
+		alert("사진을 첨부해 주세요");
+		return false;
+	}
+});
+
+
 $(".img-li").on("click", function(){
 	no = $(this).attr("data-no");
 	var name = $(this).attr("data-name");
@@ -153,12 +161,10 @@ $(".img-li").on("click", function(){
 	}
 	
 	$("#viewModal").modal("show");
-	
 });
 
 
 $("#show-modal-footer").on("click", "#btn-del", function(){
-	console.log(no);
 	var info = {no: no};
 	
 	$.ajax({	
@@ -170,7 +176,7 @@ $("#show-modal-footer").on("click", "#btn-del", function(){
 		dataType: "json",
 		success : function(){
 			$("#viewModal").modal("hide");
-			// 어떻게 없애냐...
+			$("[data-no=" + no + "]").remove();
 			
 			alert("성공적으로 삭제되었습니다.")
 						
