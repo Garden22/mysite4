@@ -130,40 +130,45 @@
 
 <script type="text/javascript">
 
-var no = 0
+var no = 0;
 
+// 이미지 등록 버튼 > 등록 모달
 $("#btnImgUpload").on("click", function(){
 	$("#addModal").modal("show");
 });
 
 
+// 이미지 등록 모달 > 업로드 버튼 > 사진 첨부 안 됐을 시
 $("#btnUpload").on("click", function(){ ///흠
 	if (!$("#file").val()) {
 		alert("사진을 첨부해 주세요");
+		
 		return false;
 	}
 });
 
 
+// 이미지 클릭
 $(".img-li").on("click", function(){
 	no = $(this).attr("data-no");
 	var name = $(this).attr("data-name");
 	var userNo = $(this).attr("data-user");
 	var content = $(this).attr("data-content");
 	
-	$("#imgHere").append('<img class="imgItem" src="${pageContext.request.contextPath}/upload/' + name + '">')
-	$("#imgHere").append('<p>' + content + '</p>')
+	$("#imgHere").append('<img class="imgItem" src="${pageContext.request.contextPath}/upload/' + name + '">') // 사진 불러오기
+	$("#imgHere").append('<p>' + content + '</p>') // 코멘트 불러오기
 	
 	var authUserNo = "${authUser.no}"; 
 	
-	if (authUserNo != "" && userNo == authUserNo) {
-		$("#show-modal-footer").append('<button type="button" id="btn-del" class="btn btn-danger" data-no="' + no + '">삭제</button>');
+	if (authUserNo != "" && userNo == authUserNo) { // 등록자와 로그인 한 사람 같으면 삭제 버튼 표시
+		$("#show-modal-footer").append('<button type="button" id="btn-del" class="btn btn-danger">삭제</button>');
 	}
 	
 	$("#viewModal").modal("show");
 });
 
 
+// 삭제 버튼 클릭 시
 $("#show-modal-footer").on("click", "#btn-del", function(){
 	var info = {no: no};
 	
@@ -175,10 +180,10 @@ $("#show-modal-footer").on("click", "#btn-del", function(){
 		
 		dataType: "json",
 		success : function(){
-			$("#viewModal").modal("hide");
 			$("[data-no=" + no + "]").remove();
+			$("#viewModal").modal("hide");
 			
-			alert("성공적으로 삭제되었습니다.")
+			alert("성공적으로 삭제되었습니다.");
 						
 			no = 0;
 		},
@@ -189,13 +194,12 @@ $("#show-modal-footer").on("click", "#btn-del", function(){
 });
 
 
+// 모달 닫을 때 초기화
 $("#viewModal").on("hidden.bs.modal", function(){
 	$("#imgHere").empty();
 	$("#show-modal-footer #btn-del").remove();
-	
-})
+});
 
 </script>
 
 </html>
-

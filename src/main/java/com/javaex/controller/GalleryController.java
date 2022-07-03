@@ -54,6 +54,7 @@ public class GalleryController {
 	@ResponseBody
 	@RequestMapping(value="/delete", method={RequestMethod.GET, RequestMethod.POST})
 	public String delete(@RequestBody GalleryVo info, HttpSession session) {
+		System.out.println("gallery > delete");
 		String result = "fail";
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
