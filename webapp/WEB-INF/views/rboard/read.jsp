@@ -74,7 +74,7 @@
 							</c:if>
 							<a id="btn_list" href="${pageContext.request.contextPath}/rboard/list">목록</a>
 						</div>
-					<!-- //read -->
+						<!-- //read -->
 					</form>		
 					
 				</div>
